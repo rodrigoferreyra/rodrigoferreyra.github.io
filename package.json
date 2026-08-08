@@ -1,0 +1,12 @@
+{
+  "name": "rodrigoferreyra-portfolio",
+  "version": "1.0.0",
+  "description": "My technical writing portfolio",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'No build step needed'"
+  },
+  "keywords": [],
+  "author": "Rodrigo Ferreyra",
+  "license": "MIT"
+}
