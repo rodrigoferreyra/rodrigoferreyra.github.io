@@ -70,9 +70,9 @@ h1 {
 .primary-link:hover, .text-link:hover { color: var(--accent); }
 
 .section-list { max-width: 920px; border-top: 1px solid var(--line); }
-.section-panel { border-bottom: 1px solid var(--line); display: none; }
+.section-panel { border-bottom: 1px solid var(--line); display: none; opacity: 0; transition: opacity 0.3s ease; }
 .section-panel.active { display: block; }
-.hero { display: none; }
+.hero { display: none; opacity: 0; transition: opacity 0.3s ease; }
 .hero.active { display: flex; }
 .case-study > summary {
   display: flex; align-items: center; justify-content: space-between; gap: 18px;
@@ -84,8 +84,11 @@ h1 {
 .case-study[open] > summary b::after { content: "−"; font-size: 17px; }
 .case-study > summary:hover { color: var(--accent); }
 
-.panel-content { padding: 22px 4px 30px; max-height: 55vh; overflow: auto; }
-.panel-content .eyebrow { margin: 0 0 7px; }
+.panel-content {
+  padding: 22px 4px 30px;
+  max-height: 55vh;
+  overflow: auto;
+}.panel-content .eyebrow { margin: 0 0 7px; }
 .panel-content h2 { margin: 0 0 10px; font-size: 20px; line-height: 1.2; letter-spacing: -.025em; font-weight: 600; }
 .panel-content p { color: var(--muted); margin: 0 0 12px; }
 .two-up, .about-content, .contact-content { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); gap: 52px; }
