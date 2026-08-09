@@ -59,7 +59,10 @@ a { color: inherit; }
 .hero-meta { margin-bottom: 15px; }
 h1 {
   max-width: 730px; margin: 0; font-size: clamp(30px, 4vw, 48px); line-height: 1.08;
-  letter-spacing: -.045em; font-weight: 600;
+  letter-spacing: -.045em; font-weight: 600; display: flex; align-items: center; gap: 16px;
+}
+.hero-image {
+  width: 48px; height: 48px; border-radius: 50%; object-fit: cover; border: 2px solid var(--line);
 }
 .hero-copy { max-width: 650px; margin: 18px 0 22px; color: var(--muted); font-size: 14px; line-height: 1.65; }
 .hero-actions { display: flex; align-items: center; gap: 17px; }
@@ -84,11 +87,8 @@ h1 {
 .case-study[open] > summary b::after { content: "−"; font-size: 17px; }
 .case-study > summary:hover { color: var(--accent); }
 
-.panel-content {
-  padding: 22px 4px 30px;
-  max-height: 55vh;
-  overflow: auto;
-}.panel-content .eyebrow { margin: 0 0 7px; }
+.panel-content { padding: 22px 4px 30px; max-height: 55vh; overflow: auto; }
+.panel-content .eyebrow { margin: 0 0 7px; }
 .panel-content h2 { margin: 0 0 10px; font-size: 20px; line-height: 1.2; letter-spacing: -.025em; font-weight: 600; }
 .panel-content p { color: var(--muted); margin: 0 0 12px; }
 .two-up, .about-content, .contact-content { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .9fr); gap: 52px; }
