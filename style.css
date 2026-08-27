@@ -54,7 +54,7 @@ a { color: inherit; }
 .sidebar-bottom a:hover { color: var(--text); }
 
 .content { min-width: 0; padding: 0 46px; }
-.hero { min-height: 46vh; max-width: 760px; padding: 16vh 0 9vh; display: flex; flex-direction: column; justify-content: center; }
+.hero { min-height: 46vh; max-width: 760px; padding: 6vh 0 9vh; display: flex; flex-direction: column; justify-content: center; }
 .hero-meta, .eyebrow {
   color: var(--accent); font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase;
 }
