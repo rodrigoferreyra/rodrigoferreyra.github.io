@@ -92,6 +92,78 @@ document.querySelector('.primary-link[data-section="work"]').addEventListener('c
 });
 
 
+// Section carousel within case studies
+function initSectionCarousel() {
+  const sectionCarousels = document.querySelectorAll('.section-carousel');
+  
+  sectionCarousels.forEach(carousel => {
+    // Skip if already initialized
+    if (carousel.dataset.initialized === 'true') return;
+    
+    const sectionCards = carousel.querySelectorAll('.section-card');
+    const prevBtn = carousel.querySelector('.section-prev');
+    const nextBtn = carousel.querySelector('.section-next');
+    const currentIndicator = carousel.querySelector('.section-current');
+    const totalIndicator = carousel.querySelector('.section-total');
+    
+    let currentSection = 0;
+    const totalSections = sectionCards.length;
+    
+    // Skip if no sections
+    if (totalSections === 0) return;
+    
+    // Update total indicator
+    if (totalIndicator) {
+      totalIndicator.textContent = totalSections;
+    }
+    
+    function showSection(index) {
+      // Ensure index is within bounds
+      if (index < 0) index = totalSections - 1;
+      if (index >= totalSections) index = 0;
+      
+      currentSection = index;
+      
+      // Update section cards
+      sectionCards.forEach((card, i) => {
+        card.classList.remove('active');
+        if (i === currentSection) {
+          card.classList.add('active');
+        }
+      });
+      
+      // Update indicator
+      if (currentIndicator) {
+        currentIndicator.textContent = currentSection + 1;
+      }
+      
+      // Update button states
+      if (prevBtn) prevBtn.disabled = totalSections <= 1;
+      if (nextBtn) nextBtn.disabled = totalSections <= 1;
+    }
+    
+    // Previous button
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        showSection(currentSection - 1);
+      });
+    }
+    
+    // Next button
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        showSection(currentSection + 1);
+      });
+    }
+    
+    // Initialize
+    showSection(0);
+    
+    // Mark as initialized
+    carousel.dataset.initialized = 'true';
+  });
+}
+
 // Case study navigation functionality
 document.querySelectorAll('.case-nav-item').forEach((item) => {
   item.addEventListener('click', () => {
@@ -117,8 +189,16 @@ document.querySelectorAll('.case-nav-item').forEach((item) => {
       // Force reflow
       void targetContent.offsetWidth;
       targetContent.style.opacity = '1';
+      
+      // Initialize section carousel for the new case study
+      initSectionCarousel();
     }
   });
+});
+
+// Initialize section carousels when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initSectionCarousel();
 });
 
 // Initialize: show overview by default
