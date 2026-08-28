@@ -165,49 +165,48 @@ function initSectionCarousel() {
 }
 
 // Case study navigation functionality
-document.querySelectorAll('.case-nav-item').forEach((item) => {
-  item.addEventListener('click', () => {
-    // Remove active class from all nav items
-    document.querySelectorAll('.case-nav-item').forEach((i) => i.classList.remove('active'));
-    
-    // Add active class to clicked item
-    item.classList.add('active');
-    
-    // Get the case content to show
-    const caseId = item.getAttribute('data-case');
-    
-    // Hide all case content
-    document.querySelectorAll('.case-display-content').forEach((content) => {
-      content.classList.remove('active');
-      content.style.opacity = '0';
-    });
-    
-    // Show the selected case content with fade in
-    const targetContent = document.querySelector(`.case-display-content[data-content="${caseId}"]`);
-    if (targetContent) {
-      targetContent.classList.add('active');
-      // Force reflow
-      void targetContent.offsetWidth;
-      targetContent.style.opacity = '1';
+function initCaseStudyNavigation() {
+  const caseNavItems = document.querySelectorAll('.case-nav-item');
+  
+  caseNavItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      // Remove active class from all nav items
+      caseNavItems.forEach((i) => i.classList.remove('active'));
       
-      // Initialize section carousel for the new case study
-      initSectionCarousel();
-    }
+      // Add active class to clicked item
+      item.classList.add('active');
+      
+      // Get the case content to show
+      const caseId = item.getAttribute('data-case');
+      
+      // Hide all case content
+      document.querySelectorAll('.case-display-content').forEach((content) => {
+        content.classList.remove('active');
+        content.style.opacity = '0';
+      });
+      
+      // Show the selected case content with fade in
+      const targetContent = document.querySelector(`.case-display-content[data-content="${caseId}"]`);
+      if (targetContent) {
+        targetContent.classList.add('active');
+        // Force reflow
+        void targetContent.offsetWidth;
+        targetContent.style.opacity = '1';
+        
+        // Initialize section carousel for the new case study
+        initSectionCarousel();
+      }
+    });
   });
-});
-
-// Initialize section carousels when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-  initSectionCarousel();
-});
+}
 
 // Initialize: show overview by default
-document.addEventListener('DOMContentLoaded', () => {
+function initHero() {
   const hero = document.querySelector('.hero');
+  if (!hero) return;
 
   // Set the starting state before displaying the hero
   hero.style.opacity = '0';
-  //  hero.style.transform = 'translateY(10px)';
   hero.classList.add('active');
 
   // Force reflow so the browser registers opacity: 0
@@ -215,7 +214,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Fade in
   hero.style.opacity = '1';
+}
 
-  // Restore normal position
-  //hero.style.transform = 'translateY(0)';
+// Initialize everything when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+  initSectionCarousel();
+  initCaseStudyNavigation();
+  initHero();
 });
