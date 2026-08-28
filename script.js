@@ -92,6 +92,35 @@ document.querySelector('.primary-link[data-section="work"]').addEventListener('c
 });
 
 
+// Case study navigation functionality
+document.querySelectorAll('.case-nav-item').forEach((item) => {
+  item.addEventListener('click', () => {
+    // Remove active class from all nav items
+    document.querySelectorAll('.case-nav-item').forEach((i) => i.classList.remove('active'));
+    
+    // Add active class to clicked item
+    item.classList.add('active');
+    
+    // Get the case content to show
+    const caseId = item.getAttribute('data-case');
+    
+    // Hide all case content
+    document.querySelectorAll('.case-display-content').forEach((content) => {
+      content.classList.remove('active');
+      content.style.opacity = '0';
+    });
+    
+    // Show the selected case content with fade in
+    const targetContent = document.querySelector(`.case-display-content[data-content="${caseId}"]`);
+    if (targetContent) {
+      targetContent.classList.add('active');
+      // Force reflow
+      void targetContent.offsetWidth;
+      targetContent.style.opacity = '1';
+    }
+  });
+});
+
 // Initialize: show overview by default
 document.addEventListener('DOMContentLoaded', () => {
   const hero = document.querySelector('.hero');
