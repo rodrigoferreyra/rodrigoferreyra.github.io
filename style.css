@@ -178,54 +178,6 @@ h1 {
   margin-top: 20px;
 }
 
-.section-carousel-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-  padding: 8px 12px;
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: 8px;
-  border: 1px solid var(--line);
-}
-
-.section-carousel-btn {
-  width: 32px;
-  height: 32px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  color: var(--muted);
-  transition: all 0.2s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.section-carousel-btn:hover {
-  background: #e9ecea;
-  color: var(--text);
-  border-color: var(--muted);
-}
-
-.section-carousel-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.section-indicator {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--muted);
-}
-
-.section-current {
-  color: var(--accent);
-  font-weight: 600;
-}
-
 .section-cards {
   position: relative;
   min-height: 200px;
@@ -255,6 +207,39 @@ h1 {
   position: relative;
 }
 
+.card-nav-arrow {
+  position: absolute;
+  top: 28px;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+  color: var(--muted);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.card-nav-arrow:hover {
+  background: #e9ecea;
+  color: var(--text);
+  border-color: var(--muted);
+  transform: scale(1.05);
+}
+
+.card-prev {
+  left: 16px;
+}
+
+.card-next {
+  right: 16px;
+}
+
 .section-card label {
   display: block;
   margin-bottom: 12px;
@@ -263,6 +248,7 @@ h1 {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  padding: 0 60px;
 }
 
 .section-card p {
@@ -270,6 +256,7 @@ h1 {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.6;
+  padding: 0 60px;
 }
 
 .section-card p:last-child {
@@ -304,6 +291,26 @@ footer { padding: 18px 4px 24px; color: #929a96; font-size: 12px; }
   .section-card {
     padding: 16px;
   }
+  
+  .section-card label,
+  .section-card p {
+    padding: 0 50px;
+  }
+  
+  .card-nav-arrow {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+    top: 24px;
+  }
+  
+  .card-prev {
+    left: 12px;
+  }
+  
+  .card-next {
+    right: 12px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -316,10 +323,24 @@ footer { padding: 18px 4px 24px; color: #929a96; font-size: 12px; }
     padding: 14px;
   }
   
-  .section-carousel-btn {
+  .section-card label,
+  .section-card p {
+    padding: 0 45px;
+  }
+  
+  .card-nav-arrow {
     width: 28px;
     height: 28px;
     font-size: 14px;
+    top: 20px;
+  }
+  
+  .card-prev {
+    left: 10px;
+  }
+  
+  .card-next {
+    right: 10px;
   }
 }
 

@@ -101,21 +101,11 @@ function initSectionCarousel() {
     if (carousel.dataset.initialized === 'true') return;
     
     const sectionCards = carousel.querySelectorAll('.section-card');
-    const prevBtn = carousel.querySelector('.section-prev');
-    const nextBtn = carousel.querySelector('.section-next');
-    const currentIndicator = carousel.querySelector('.section-current');
-    const totalIndicator = carousel.querySelector('.section-total');
-    
     let currentSection = 0;
     const totalSections = sectionCards.length;
     
     // Skip if no sections
     if (totalSections === 0) return;
-    
-    // Update total indicator
-    if (totalIndicator) {
-      totalIndicator.textContent = totalSections;
-    }
     
     function showSection(index) {
       // Ensure index is within bounds
@@ -131,30 +121,20 @@ function initSectionCarousel() {
           card.classList.add('active');
         }
       });
-      
-      // Update indicator
-      if (currentIndicator) {
-        currentIndicator.textContent = currentSection + 1;
-      }
-      
-      // Update button states
-      if (prevBtn) prevBtn.disabled = totalSections <= 1;
-      if (nextBtn) nextBtn.disabled = totalSections <= 1;
     }
     
-    // Previous button
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
+    // Add event listeners to all card navigation arrows
+    carousel.querySelectorAll('.card-prev').forEach(btn => {
+      btn.addEventListener('click', () => {
         showSection(currentSection - 1);
       });
-    }
+    });
     
-    // Next button
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
+    carousel.querySelectorAll('.card-next').forEach(btn => {
+      btn.addEventListener('click', () => {
         showSection(currentSection + 1);
       });
-    }
+    });
     
     // Initialize
     showSection(0);
