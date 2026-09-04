@@ -27,8 +27,6 @@
       <nav class="side-nav">
         <a class="nav-item active" data-section="overview"><span class="nav-index"></span><span>Overview</span></a>
         <a class="nav-item" data-section="work"><span class="nav-index"></span><span>Case studies</span></a>
-        <a class="nav-item" data-section="what-i-do"><span class="nav-index"></span><span>What I do</span></a>
-        <a class="nav-item" data-section="approach"><span class="nav-index"></span><span>How I work</span></a>
         <a class="nav-item" data-section="about"><span class="nav-index"></span><span>About</span></a>
         <a class="nav-item" data-section="contact"><span class="nav-index"></span><span>Contact</span></a>
       </nav>
@@ -41,9 +39,9 @@
 
     <main class="content" id="top">
       <section class="hero active" aria-labelledby="hero-title">
-        <div class="hero-meta">Senior Technical Writer &amp; Documentation Engineer</div>
-        <h1 id="hero-title">Rodrigo Ferreyra <img src="images/rodrigo.png" alt="Rodrigo Ferreyra" class="hero-image"></h1>
-        <p class="hero-copy">I turn fragmented product knowledge into documentation systems that scale. I design, build, and maintain documentation for complex software products, working directly [...]
+        <div class="hero-meta">Rodrigo Ferreyra - Senior Technical Writer &amp; Documentation Engineer</div>
+        <h1 id="hero-title">Add documentation to your product<img src="images/rodrigo.png" alt="Rodrigo Ferreyra" class="hero-image"></h1>
+        <p class="hero-copy">I design, build, and maintain documentation for complex software products, working directly with engineering, product, and subject-matter experts to make technical knowledge clear, useful, and easier to maintain.
         <div class="hero-actions">
           <a class="primary-link" data-section="work">See my work <span>→</span></a>
           <a class="text-link" href="mailto:ferreyra_rodrigo@outlook.com">Get in touch</a>
@@ -58,7 +56,7 @@
               <p>A closer look at how I approach documentation problems.</p>
               <ul class="detail-list case-nav">
                 <li class="case-nav-item active" data-case="unaric"><strong>UNARIC</strong><span>Building a documentation system for a multi-product software company</span></li>
-                <li class="case-nav-item" data-case="project2"><strong>Project 2</strong><span>Additional case study coming soon</span></li>
+                <li class="case-nav-item" data-case="compliancescorecard"><strong>COMPLIANCE SCORECARD</strong><span>Documenting a moving target</span></li>
                 <li class="case-nav-item" data-case="project3"><strong>Project 3</strong><span>Additional case study coming soon</span></li>
               </ul>
             </div>
@@ -100,7 +98,7 @@
                         
                         <div class="section-card" data-section="3" data-category="Result">
                           <button class="card-nav-arrow card-prev" aria-label="Previous section">←</button>
-                          <label>Result</label>
+                          <label>Result: Documentation that scales with the company's portfolio</label>
                           <p>The documentation now feels like Unaric's documentation, rather than a collection of unrelated product manuals.</p>
                           <p>Around a dozen product documentation sets have been migrated or created, with legacy content removed, information reorganized, and existing material rewritten and consolidated. The resulting documentation is easier to navigate, easier to maintain, and visually consistent across the product portfolio.
 </p>
@@ -113,17 +111,86 @@
                   </div>
                 </div>
 
-                <div class="case-display-content" data-content="project2">
-                  <div class="case-body compact">
-                    <div class="case-image"><div class="case-card-placeholder"><span>Coming Soon</span></div></div>
-                    <p>This slot is ready for another project when there is enough evidence to tell the story properly.</p>
+                <div class="case-display-content" data-content="compliancescorecard">
+                  <div class="case-body">
+                    <div class="case-image"><img src="images/compliance-scorecard.png" alt="Compliance Scorecard" class="case-image"></div>
+                    <div class="section-carousel">
+                      <div class="section-cards">
+                        <div class="section-card active" data-section="0" data-category="Background">
+                          <button class="card-nav-arrow card-next" aria-label="Next section">→</button>
+                          <label>Background</label>
+                          <p>Compliance Scorecard is a SaaS platform that helps managed service providers (MSPs) manage compliance for their clients. Its users can implement policies, conduct assessments, and manage many other compliance tasks.</p>
+                          <p>I started working with Compliance Scorecard in 2023, when the product was already in production but evolving quickly. My job was to build and maintain its customer-facing documentation.</p>
+                        </div>
+                         <div class="section-card" data-section="1" data-category="Challenge">
+                          <button class="card-nav-arrow card-prev" aria-label="Previous section">←</button>
+                          <button class="card-nav-arrow card-next" aria-label="Next section">→</button>
+                          <label>The Challenge: Documenting a moving target</label>
+                          <p>The first challenge was understanding the product itself. Compliance Scorecard has a broad range of compliance workflows, and much of the product knowledge wasn't packaged into documentation I could simply turn into articles. To document it effectively, I had to learn by using the product and working through its workflows myself.
+</p>
+                          <p>The second challenge was that the product kept changing. Screens were redesigned, navigation shifted, features were renamed, and workflows evolved. Documentation that accurately described the product in a release could become misleading by the next iteration.</p>
+                        <p>There was also a tension between presentation and maintainability. At one point, the documentation used custom Confluence Aura components to create a more visually polished tabbed experience in Confluence. While the presentation looked good, the approach introduced problems for documentation usability and made the content unnecessarily tedious to maintain.</p>
+                      <p>The same problem appeared with product demos. I created a series of videos covering the product's many workflows, but as the UI changed, the videos quickly became obsolete. </p>  
+                      </div>
+                        
+                        <div class="section-card" data-section="2" data-category="Solution">
+                          <button class="card-nav-arrow card-prev" aria-label="Previous section">←</button>
+                          <button class="card-nav-arrow card-next" aria-label="Next section">→</button>
+                          <label>The solution: Choosing maintainability over complexity</label>
+                          <p>I built the customer-facing documentation by learning the product hands-on and turning that experience into straightforward, task-oriented content. Rather than treating the documentation as a static deliverable, I continuously updated its structure and content as the product evolved.
+                          <p>I also decided to move away from the custom Aura-tab approach and return to standard Confluence pages. From a user perspective, this simplified the documentation structure and improved searchability; for me, content became easier to work with and update. It also made the documentation easier to migrate in the future, since standard Confluence content is less dependent on custom components.</p>
+                          <p>For product demonstrations, we moved away videos toward interactive demos. I evaluated two options: building a lightweight custom demo site or using Storylane. The team chose Storylane because it would be easier for non-technical users to maintain and contribute to.
+</p>
+                        </div>
+                        
+                        <div class="section-card" data-section="3" data-category="Result">
+                          <button class="card-nav-arrow card-prev" aria-label="Previous section">←</button>
+                          <label>Result: Documentation built to evolve</label>
+                          <p>The documentation grew from the product rather than around it. It now provides a straightforward, searchable resource covering the product's major workflows, while remaining significantly easier to update when the UI or functionality changes.</p>
+</p>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <a class="case-link" href="https://compliancerisk.atlassian.net/wiki/spaces/CRIODOCS/" target="_blank" rel="noopener">View documentation ↗</a>
                   </div>
                 </div>
 
+
+
                 <div class="case-display-content" data-content="project3">
-                  <div class="case-body compact">
+                  <div class="case-body">
                     <div class="case-image"><div class="case-card-placeholder"><span>Coming Soon</span></div></div>
-                    <p>This slot is ready for another project when there is enough evidence to tell the story properly.</p>
+                    
+                    <div class="section-carousel">
+                      <div class="section-cards">
+                        <div class="section-card active" data-section="0" data-category="Background">
+                          <button class="card-nav-arrow card-next" aria-label="Next section">→</button>
+                          <label>Background</label>
+                          <p>This slot is ready for another project when there is enough evidence to tell the story properly.</p>
+                        </div>
+                        
+                        <div class="section-card" data-section="1" data-category="Challenge">
+                          <button class="card-nav-arrow card-prev" aria-label="Previous section">←</button>
+                          <button class="card-nav-arrow card-next" aria-label="Next section">→</button>
+                          <label>The Challenge</label>
+                          <p>This slot is ready for another project when there is enough evidence to tell the story properly.</p>
+                        </div>
+                        
+                        <div class="section-card" data-section="2" data-category="Solution">
+                          <button class="card-nav-arrow card-prev" aria-label="Previous section">←</button>
+                          <button class="card-nav-arrow card-next" aria-label="Next section">→</button>
+                          <label>The Solution</label>
+                          <p>This slot is ready for another project when there is enough evidence to tell the story properly.</p>
+                        </div>
+                        
+                        <div class="section-card" data-section="3" data-category="Result">
+                          <button class="card-nav-arrow card-prev" aria-label="Previous section">←</button>
+                          <label>Result</label>
+                          <p>This slot is ready for another project when there is enough evidence to tell the story properly.</p>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -131,59 +198,44 @@
           </div>
         </section>
 
-        <section class="section-panel" id="what-i-do" data-content="what-i-do">
-          <div class="panel-content two-up">
-            <div>
-              <h2>What I do</h2>
-              <p>Documentation that grows with the product.</p>
-              <p>I design, build, and maintain documentation systems for complex software products.</p>
-              <p>I work with engineering, product, and subject-matter experts to turn fragmented knowledge into clear, useful documentation that reduces support load, accelerates onboarding, and i[...]
-            </div>
-            <div>
-              <p class="eyebrow">Problems I solve</p>
-              <ul class="compact-list">
-                <li>Knowledge trapped in SMEs</li>
-                <li>Missing or outdated documentation</li>
-                <li>Documentation bottlenecks</li>
-                <li>Growing support load</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
-        <section class="section-panel" id="approach" data-content="approach">
-          <div class="panel-content two-up">
-            <div>
-              <h2>How I work</h2>
-              <ul class="detail-list">
-                <li><strong>Docs-as-Code</strong><span>Git, Markdown, Docusaurus</span></li>
-                <li><strong>Cross-functional collaboration</strong><span>Direct work with engineering, product, and SMEs</span></li>
-                <li><strong>End-to-end ownership</strong><span>Architecture, publishing, and maintenance</span></li>
-                <li><strong>Technical investigation</strong><span>Product testing, APIs, code and CLI workflows</span></li>
-              </ul>
-            </div>
-            <div>
-              <h2>Deliverables</h2>
-              <ul class="detail-list">
-                <li><strong>API documentation</strong><span>References, workflows, and integration guides</span></li>
-                <li><strong>User guides &amp; onboarding</strong><span>Task-oriented product documentation</span></li>
-                <li><strong>Knowledge bases &amp; help centers</strong><span>Structured support and product knowledge</span></li>
-                <li><strong>Architecture docs &amp; release notes</strong><span>Technical context and product changes</span></li>
-              </ul>
-            </div>
-          </div>
-        </section>
-
         <section class="section-panel" id="about" data-content="about">
-          <div class="panel-content about-content">
-            <div>
+          <div class="panel-content about-merged">
+            <div class="about-lead">
               <h2>About</h2>
-              <p>Six years documenting software.</p>
-            </div>
-            <div>
-              <p>I'm Rodrigo Ferreyra, a technical writer and documentation specialist with five years of experience working with software companies.</p>
-              <p>I specialize in complex products where documentation needs to be more than a collection of pages: it needs clear information architecture, strong collaboration with SMEs, and a m[...]
+              <p class="eyebrow">Six years documenting software.</p>
+              <p>I'm Rodrigo Ferreyra, a technical writer and documentation specialist with five years of experience working with software companies. I design, build, and maintain documentation for complex software products, working with engineering, product, and subject-matter experts to turn fragmented knowledge into clear, useful documentation that reduces support load and accelerates onboarding.</p>
+              <p>I specialize in complex products where documentation needs to be more than a collection of pages: it needs clear information architecture, strong collaboration with SMEs, and a maintainable structure that scales as the product grows.</p>
               <p class="muted">Git · Markdown · Docusaurus · APIs · Postman · Docker · CLI · HTML/CSS · Notion · Confluence</p>
+            </div>
+
+            <div class="about-columns">
+              <div class="about-column">
+                <p class="eyebrow">How I work</p>
+                <ul class="detail-list">
+                  <li><strong>Docs-as-Code</strong><span>Git, Markdown, Docusaurus</span></li>
+                  <li><strong>Cross-functional collaboration</strong><span>Direct work with engineering, product, and SMEs</span></li>
+                  <li><strong>End-to-end ownership</strong><span>Architecture, publishing, and maintenance</span></li>
+                  <li><strong>Technical investigation</strong><span>Product testing, APIs, code and CLI workflows</span></li>
+                </ul>
+              </div>
+              <div class="about-column">
+                <p class="eyebrow">Deliverables</p>
+                <ul class="detail-list">
+                  <li><strong>API documentation</strong><span>References, workflows, and integration guides</span></li>
+                  <li><strong>User guides &amp; onboarding</strong><span>Task-oriented product documentation</span></li>
+                  <li><strong>Knowledge bases &amp; help centers</strong><span>Structured support and product knowledge</span></li>
+                  <li><strong>Architecture docs &amp; release notes</strong><span>Technical context and product changes</span></li>
+                </ul>
+              </div>
+              <div class="about-column">
+                <p class="eyebrow">Problems I solve</p>
+                <ul class="compact-list">
+                  <li>Knowledge trapped in SMEs</li>
+                  <li>Missing or outdated documentation</li>
+                  <li>Documentation bottlenecks</li>
+                  <li>Growing support load</li>
+                </ul>
+              </div>
             </div>
           </div>
         </section>
