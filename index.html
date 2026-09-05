@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <!-- Google Analytics GA4 (moved to immediately after </head> as requested) -->
@@ -25,22 +26,22 @@
     <aside class="sidebar" aria-label="Site navigation">
 
       <nav class="side-nav">
-        <a class="nav-item active" data-section="overview"><span class="nav-index"></span><span>Overview</span></a>
-        <a class="nav-item" data-section="work"><span class="nav-index"></span><span>Case studies</span></a>
-        <a class="nav-item" data-section="about"><span class="nav-index"></span><span>About</span></a>
-        <a class="nav-item" data-section="contact"><span class="nav-index"></span><span>Contact</span></a>
+        <a class="nav-item active" data-section="overview"><i data-lucide="eye"></i><span>Overview</span></a>
+        <a class="nav-item" data-section="work"><i data-lucide="briefcase"></i><span>Case studies</span></a>
+        <a class="nav-item" data-section="about"><i data-lucide="user"></i><span>About</span></a>
+        <a class="nav-item" data-section="contact"><i data-lucide="mail"></i><span>Contact</span></a>
       </nav>
 
       <div class="sidebar-bottom">
-        <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        <a href="https://github.com/YOUR-GITHUB" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/rodrigo-ferreyra-604351180" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="https://github.com/rodrigoferreyra" target="_blank" rel="noopener">GitHub ↗</a>
         <a href="mailto:ferreyra_rodrigo@outlook.com">Email me ↗</a>
       </div>
     </aside>
 
     <main class="content" id="top">
       <section class="hero active" aria-labelledby="hero-title">
-        <div class="hero-meta">Rodrigo Ferreyra - Senior Technical Writer &amp; Documentation Engineer</div>
+        <div class="hero-meta">Rodrigo Ferreyra - Technical Writer</div>
         <h1 id="hero-title">Add documentation to your product</h1>
         <p class="hero-copy">I design, build, and maintain documentation for complex software products, working directly with engineering, product, and subject-matter experts to make technical knowledge clear, useful, and easier to maintain.
         <div class="hero-actions">
@@ -253,8 +254,8 @@
             </div>
             
             <div class="about-skills">
-              <p class="eyebrow">Technical skills</p>
-              <p class="muted">Git · Markdown · Docusaurus · APIs · Postman · Docker · CLI · HTML/CSS · Notion · Confluence</p>
+              <p class="eyebrow">Tech Stack</p>
+              <p class="muted">Git · Markdown · Docusaurus · APIs · Postman · Docker · CLI tools · HTML/CSS · Notion · Confluence · Archbee · TypeScript</p>
             </div>
           </div>
         </section>
@@ -264,15 +265,16 @@
             <div>
               <h2>Contact</h2>
               <p class="eyebrow">Let's solve your documentation challenges</p>
-              <p>If you're building a complex software product and documentation has become difficult to scale, I'd like to hear about it. I work with teams to turn fragmented knowledge into clear, maintainable documentation that reduces support load and accelerates onboarding.</p>
+              <p>My craft is something I enjoy very much and I'm more than willing to have a look at your project and give you a straight answer on how I'd approach it. If you're building a complex software product and documentation has become difficult to scale, I'd like to hear about it. Please ping me so we can discuss!</p>
             </div>
             <div>
               <p class="contact-primary"></p>
               <a class="contact-email" href="mailto:ferreyra_rodrigo@outlook.com">Email me</a>
               <p class="contact-secondary">You can also find me on:</p>
               <div class="contact-links">
-                <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" rel="noopener">LinkedIn ↗</a>
-                <a href="https://github.com/YOUR-GITHUB" target="_blank" rel="noopener">GitHub ↗</a>
+                <a href="https://www.linkedin.com/in/rodrigo-ferreyra-604351180" target="_blank" rel="noopener">LinkedIn ↗</a>
+                <a href="https://www.upwork.com/freelancers/~0108250903fbc61d9a?mp_source=share" target="_blank" rel="noopener">Upwork ↗</a>
+                <a href="https://github.com/rodrigoferreyra" target="_blank" rel="noopener">GitHub ↗</a>
               </div>
             </div>
           </div>
@@ -281,5 +283,8 @@
     </main>
   </div>
   <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
