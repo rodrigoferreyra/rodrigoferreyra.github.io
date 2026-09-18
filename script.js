@@ -1,204 +1,154 @@
-// Navigation functionality to show/hide content sections
-document.querySelectorAll('.nav-item').forEach((link) => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
+const VALID_SECTIONS = new Set(['overview', 'work', 'about', 'contact']);
 
-    // Update active state on nav items
-    document.querySelectorAll('.nav-item').forEach((item) => item.classList.remove('active'));
-    link.classList.add('active');
+function getSectionFromHash() {
+  const hash = window.location.hash.replace('#', '');
+  return VALID_SECTIONS.has(hash) ? hash : 'overview';
+}
 
-    // Get the section to show
-    const section = link.getAttribute('data-section');
+function showSection(section, { updateHash = true } = {}) {
+  if (!VALID_SECTIONS.has(section)) section = 'overview';
 
-    // Find all currently active sections
-    const activeHero = document.querySelector('.hero.active');
-    const activePanels = document.querySelectorAll('.section-panel.active');
+  document.querySelectorAll('.nav-item').forEach((item) => {
+    item.classList.toggle('active', item.getAttribute('data-section') === section);
+  });
 
-    // Hide all active sections first
-    if (activeHero) {
-      activeHero.style.opacity = '0';
-    //  activeHero.style.transform = 'translateY(10px)';
+  const hero = document.querySelector('.hero');
+  const panels = document.querySelectorAll('.section-panel');
 
-      setTimeout(() => {
-        activeHero.classList.remove('active');
-        activeHero.style.opacity = '';
-        activeHero.style.transform = '';
-      }, 300);
-    }
-
-    activePanels.forEach((panel) => {
-      panel.style.opacity = '0';
-    //  panel.style.transform = 'translateY(10px)';
-
-      setTimeout(() => {
-        panel.classList.remove('active');
-        panel.style.opacity = '';
-        panel.style.transform = '';
-      }, 300);
+  if (section === 'overview') {
+    panels.forEach((panel) => panel.classList.remove('active'));
+    if (hero) hero.classList.add('active');
+  } else {
+    if (hero) hero.classList.remove('active');
+    panels.forEach((panel) => {
+      panel.classList.toggle('active', panel.getAttribute('data-content') === section);
     });
+  }
 
-    // Show the appropriate content after the current content has faded out
-    setTimeout(() => {
-      if (section === 'overview') {
-        const hero = document.querySelector('.hero');
+  if (updateHash) {
+    const nextHash = `#${section}`;
+    if (window.location.hash !== nextHash) {
+      history.pushState(null, '', nextHash);
+    }
+  }
+}
 
-        // Set the starting position BEFORE displaying the element
-        hero.style.opacity = '0';
-    //    hero.style.transform = 'translateY(10px)';
-        hero.classList.add('active');
-
-        // Force the browser to register the starting opacity
-        void hero.offsetWidth;
-
-        // Fade in
-        hero.style.opacity = '1';
-
-        // Restore normal position
-        hero.style.transform = 'translateY(0)';
-      } else {
-        const targetPanel = document.querySelector(`[data-content="${section}"]`);
-
-        if (targetPanel) {
-          // Set the starting position BEFORE displaying the element
-          targetPanel.style.opacity = '0';
-          targetPanel.style.transform = 'translateY(10px)';
-          targetPanel.classList.add('active');
-
-          // Force the browser to register the starting opacity
-          void targetPanel.offsetWidth;
-
-          // Fade in
-          targetPanel.style.opacity = '1';
-
-          // Restore normal position
-          targetPanel.style.transform = 'translateY(0)';
-        }
-      }
-    }, 300);
+document.querySelectorAll('[data-section]').forEach((link) => {
+  link.addEventListener('click', (e) => {
+    const section = link.getAttribute('data-section');
+    if (!VALID_SECTIONS.has(section)) return;
+    e.preventDefault();
+    showSection(section);
   });
 });
 
+function updateProgress(reader, scroll) {
+  const bar = reader.querySelector('.case-progress-bar');
+  if (!bar) return;
+  const max = scroll.scrollHeight - scroll.clientHeight;
+  const ratio = max > 0 ? scroll.scrollTop / max : 0;
+  bar.style.width = `${Math.min(100, Math.max(0, ratio * 100))}%`;
+}
 
-// Handle the "See my work" link in hero
-document.querySelector('.primary-link[data-section="work"]').addEventListener('click', (e) => {
-  e.preventDefault();
+function initCaseReaders() {
+  document.querySelectorAll('.case-reader').forEach((reader) => {
+    const scroll = reader.querySelector('.case-reader-scroll');
+    const tocLinks = reader.querySelectorAll('.case-toc-link');
+    const sections = reader.querySelectorAll('.case-section');
+    if (!scroll || !tocLinks.length || !sections.length) return;
 
-  // Find and click the work nav item
-  const workNav = document.querySelector('.nav-item[data-section="work"]');
-
-  if (workNav) {
-    workNav.click();
-  }
-});
-
-
-// Section carousel within case studies
-function initSectionCarousel() {
-  const sectionCarousels = document.querySelectorAll('.section-carousel');
-  
-  sectionCarousels.forEach(carousel => {
-    // Skip if already initialized
-    if (carousel.dataset.initialized === 'true') return;
-    
-    const sectionCards = carousel.querySelectorAll('.section-card');
-    let currentSection = 0;
-    const totalSections = sectionCards.length;
-    
-    // Skip if no sections
-    if (totalSections === 0) return;
-    
-    function showSection(index) {
-      // Ensure index is within bounds
-      if (index < 0) index = totalSections - 1;
-      if (index >= totalSections) index = 0;
-      
-      currentSection = index;
-      
-      // Update section cards
-      sectionCards.forEach((card, i) => {
-        card.classList.remove('active');
-        if (i === currentSection) {
-          card.classList.add('active');
-        }
+    const setActive = (id) => {
+      tocLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('data-target') === id);
       });
-    }
-    
-    // Add event listeners to all card navigation arrows
-    carousel.querySelectorAll('.card-prev').forEach(btn => {
-      btn.addEventListener('click', () => {
-        showSection(currentSection - 1);
+    };
+
+    tocLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const id = link.getAttribute('data-target');
+        const target = reader.querySelector(`#${id}`);
+        if (!target) return;
+        setActive(id);
+        const top = target.offsetTop - sections[0].offsetTop;
+        scroll.scrollTo({ top, behavior: 'smooth' });
       });
     });
-    
-    carousel.querySelectorAll('.card-next').forEach(btn => {
-      btn.addEventListener('click', () => {
-        showSection(currentSection + 1);
-      });
-    });
-    
-    // Initialize
-    showSection(0);
-    
-    // Mark as initialized
-    carousel.dataset.initialized = 'true';
+
+    scroll.addEventListener('scroll', () => updateProgress(reader, scroll), { passive: true });
+    updateProgress(reader, scroll);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      {
+        root: scroll,
+        rootMargin: '-10% 0px -55% 0px',
+        threshold: [0.15, 0.4, 0.7],
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
   });
 }
 
-// Case study navigation functionality
 function initCaseStudyNavigation() {
   const caseNavItems = document.querySelectorAll('.case-nav-item');
-  
+
+  const activateCase = (item) => {
+    caseNavItems.forEach((i) => i.classList.remove('active'));
+    item.classList.add('active');
+
+    const caseId = item.getAttribute('data-case');
+    document.querySelectorAll('.case-display-content').forEach((content) => {
+      const isActive = content.getAttribute('data-content') === caseId;
+      content.classList.toggle('active', isActive);
+      if (isActive) {
+        const reader = content.querySelector('.case-reader');
+        const scroll = content.querySelector('.case-reader-scroll');
+        if (scroll) {
+          scroll.scrollTop = 0;
+          if (reader) updateProgress(reader, scroll);
+        }
+        content.querySelectorAll('.case-toc-link').forEach((link, index) => {
+          link.classList.toggle('active', index === 0);
+        });
+      }
+    });
+  };
+
   caseNavItems.forEach((item) => {
-    item.addEventListener('click', () => {
-      // Remove active class from all nav items
-      caseNavItems.forEach((i) => i.classList.remove('active'));
-      
-      // Add active class to clicked item
-      item.classList.add('active');
-      
-      // Get the case content to show
-      const caseId = item.getAttribute('data-case');
-      
-      // Hide all case content
-      document.querySelectorAll('.case-display-content').forEach((content) => {
-        content.classList.remove('active');
-        content.style.opacity = '0';
-      });
-      
-      // Show the selected case content with fade in
-      const targetContent = document.querySelector(`.case-display-content[data-content="${caseId}"]`);
-      if (targetContent) {
-        targetContent.classList.add('active');
-        // Force reflow
-        void targetContent.offsetWidth;
-        targetContent.style.opacity = '1';
-        
-        // Initialize section carousel for the new case study
-        initSectionCarousel();
+    item.addEventListener('click', () => activateCase(item));
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        activateCase(item);
       }
     });
   });
 }
 
-// Initialize: show overview by default
-function initHero() {
-  const hero = document.querySelector('.hero');
-  if (!hero) return;
-
-  // Set the starting state before displaying the hero
-  hero.style.opacity = '0';
-  hero.classList.add('active');
-
-  // Force reflow so the browser registers opacity: 0
-  void hero.offsetWidth;
-
-  // Fade in
-  hero.style.opacity = '1';
+function initFromHash() {
+  showSection(getSectionFromHash(), { updateHash: false });
+  if (!window.location.hash) {
+    history.replaceState(null, '', '#overview');
+  }
 }
 
-// Initialize everything when DOM is ready
+window.addEventListener('hashchange', () => {
+  showSection(getSectionFromHash(), { updateHash: false });
+});
+
+window.addEventListener('popstate', () => {
+  showSection(getSectionFromHash(), { updateHash: false });
+});
+
 document.addEventListener('DOMContentLoaded', () => {
-  initSectionCarousel();
   initCaseStudyNavigation();
-  initHero();
+  initCaseReaders();
+  initFromHash();
 });
